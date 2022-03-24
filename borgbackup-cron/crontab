@@ -1,0 +1,1 @@
+*/5 * * * * borg create --progress --stats --compression lz4 /var/backup/dest::$(date +'%Y-%m-%d-%s') /var/backup/src
