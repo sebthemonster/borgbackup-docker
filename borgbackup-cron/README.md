@@ -1,9 +1,9 @@
 # Borgbackup Cron
  Borg: Run backups in a cron scheduled manner. A child of the sebthemonster/borgbackup-base Docker image.
 
- It's up to you to initialize the backup repository, set up your volumes, etc.  This package is just a borg executable and a framework for running cron.
+ It's up to you to initialize the backup repository, set up your volumes, ...  This package is just a borg executable and a framework for running cron.
 
-By default, the cron will backup everything mounted at /var/backup/src to a repository in /var/backup/dest, every day at 6:00 AM.  To override this, you'll need to make your own crontab and mount (docker run -v ...) it over the crontab /crontab.
+By default, the cron will backup everything mounted at /var/backup/src to a repository in /var/backup/dest, every day at 6:00 AM.  To override this, you'll need to make your own crontab and mount (docker run -v ...) it over the crontab /etc/borg/crontab.
 
 ## Getting started
 
@@ -18,7 +18,7 @@ $ docker up --env BORG_PASSPHRASE \
     -v /etc/localtime:/etc/localtime:ro \
     -v /path/to/repo:/var/backup/repo \
     -v /path/to/source:/var/backup/dest \ 
-    -v /<path/to/alternate/crontab>:/crontab:ro
+    -v /<path/to/alternate/crontab>:/etc/borg/crontab:ro
     sebthemonster/borgbackup-cron
 ```
 
@@ -28,7 +28,7 @@ $ docker up --env BORG_PASSPHRASE \
     --env BORG_REPO \
     -v /etc/localtime:/etc/localtime:ro \
     -v /path/to/source:/var/backup/dest \ 
-    -v /<path/to/alternate/crontab>:/crontab:ro
+    -v /<path/to/alternate/crontab>:/etc/borg/crontab:ro
     sebthemonster/borgbackup-client
 ```
 

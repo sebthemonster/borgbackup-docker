@@ -1,4 +1,4 @@
-FROM sebthemonster/borgbackup-base:latest
+FROM sebthemonster/borgbackup:latest
 
 RUN sed -i s/#PermitRootLogin.*/PermitRootLogin\ no/ /etc/ssh/sshd_config
 
