@@ -14,22 +14,22 @@ $ docker run --rm --env PASSPHRASE -v /path/to/repo:/var/backup/dest sebthemonst
 
 Start the container like this:
 ```bash
-$ docker up --env BORG_PASSPHRASE \
+$ docker up -d --env BORG_PASSPHRASE \
     -v /etc/localtime:/etc/localtime:ro \
-    -v /path/to/repo:/var/backup/repo \
-    -v /path/to/source:/var/backup/dest \ 
-    -v /<path/to/alternate/crontab>:/etc/borg/crontab:ro
+    -v /path/to/repo:/var/backup/dest \
+    -v /path/to/source:/var/backup/src \ 
+    -v /path/to/alternate/crontab:/etc/borg/crontab:ro
     sebthemonster/borgbackup-cron
 ```
 
 or with environment variables and rewrite crontab with no repo path
 ```bash
-$ docker up --env BORG_PASSPHRASE \
+$ docker up -d --env BORG_PASSPHRASE \
     --env BORG_REPO \
     -v /etc/localtime:/etc/localtime:ro \
-    -v /path/to/source:/var/backup/dest \ 
-    -v /<path/to/alternate/crontab>:/etc/borg/crontab:ro
-    sebthemonster/borgbackup-client
+    -v /path/to/source:/var/backup/src \ 
+    -v /path/to/alternate/crontab:/etc/borg/crontab:ro
+    sebthemonster/borgbackup-cron
 ```
 
 It's possible to use an env file like this :
@@ -38,3 +38,12 @@ $ cat env.list
 BORG_PASSPHRASE=Yourphraseaslongaspossibleandmore
 BORG_REPO=/var/backup/dest
 ```
+and use a command like this :
+```bash
+$ docker up -d --env-file path/to/env.list \
+    -v /etc/localtime:/etc/localtime:ro \
+    -v /path/to/source:/var/backup/src \
+    -v /path/to/alternate/crontab:/etc/borg/crontab:ro
+    sebthemonster/borgbackup-cron 
+```
+
