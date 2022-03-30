@@ -1,5 +1,5 @@
 # Borgbackup Cron
- Borg: Run backups in a cron scheduled manner. A child of the sebthemonster/borgbackup-base Docker image.
+ Borg: Run backups in a cron scheduled manner. A child of the sebthemonster/borgbackup Docker image.
 
  It's up to you to initialize the backup repository, set up your volumes, ...  This package is just a borg executable and a framework for running cron.
 
